@@ -75,7 +75,7 @@ const register = async (req, res) => {
       const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
       delete user.password
   
-      return res.status(200).json({ token, user })
+      return res.status(200).json({ token, user ,role })
   
     } catch (err) {
       console.log(err)
