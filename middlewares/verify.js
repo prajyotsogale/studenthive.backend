@@ -34,7 +34,6 @@ module.exports.verifyAdmin = async (req, res, next) => {
         if (decoded.id.role !== "host") {
             return res.status(401).json({ msg: "your are not a host" })
         }
-
         req.user = decoded;
         next()
     }

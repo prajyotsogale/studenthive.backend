@@ -1,3 +1,4 @@
+const { get } = require("mongoose");
 const Booking = require("../models/Booking");
 
 const createBooking = async (req, res) => {
@@ -19,7 +20,7 @@ const createBooking = async (req, res) => {
       });
   
       if (existingBookings.length > 0) {
-        return res.status(409).json({ message: "This property is already booked for the selected dates." });
+        return res.status(409).json({ message: "This property is already booked for the selected dates." , status: false });
       }
   
       // Create and save new booking if no overlap
@@ -32,4 +33,14 @@ const createBooking = async (req, res) => {
     }
   };
 
-    module.exports = { createBooking };
+  const getBookingsById = async (req, res) => {
+    const { id } = req.params;
+    try {
+      const bookings = await Booking.find({ listingId: id });
+      res.status(200).json(bookings );
+    } catch (error) {
+      res.status(404).json({ message: "No bookings found!" });
+    }
+  }
+
+    module.exports = { createBooking , getBookingsById };

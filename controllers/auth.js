@@ -72,7 +72,7 @@ const register = async (req, res) => {
       }
   
       /* Generate JWT token */
-      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
+      const token = jwt.sign({ id: user }, process.env.JWT_SECRET)
       delete user.password
   
       return res.status(200).json({ token, user ,role })
