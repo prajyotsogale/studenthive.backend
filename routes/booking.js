@@ -18,8 +18,7 @@ router.get("/getbookings/:id", verifyJWT, getBookingsById);
 /* CREATE ORDER */
 router.post("/create-order", async (req, res) => {
     try {
-    //   const { amount, currency } = req.body;
-    const amount = 1 ;
+      const { amount } = req.body;
     const currency = "INR";
       
       console.log("Received order request:", amount, currency);
